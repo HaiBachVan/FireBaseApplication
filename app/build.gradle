@@ -1,0 +1,92 @@
+apply plugin: 'com.android.application'
+apply plugin: 'realm-android'
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion "26.0.0"
+
+    defaultConfig {
+        applicationId "app.demo.firebase"
+        minSdkVersion 23
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+ext.supportVersion = '26.+'
+ext.constraintLayoutVersion = '1.0.2'
+ext.firebaseVersion = '11.0.1'
+ext.butterKnifeVersion = '8.6.0'
+ext.daggerVersion = '1.2.5'
+ext.rxJava2Version = '2.1.1'
+ext.rxAndroid2Version = '2.0.1'
+ext.retrofitRxJavaVersion = '1.0.0'
+ext.retrofit2Version = '2.3.0'
+ext.okHttp3Version = '3.8.1'
+ext.gSonVersion = '2.8.0'
+ext.glideVersion = '4.0.0-RC1'
+ext.picassoVersion = '2.5.2'
+ext.junitVersion = '4.12'
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+
+    compile "com.android.support:appcompat-v7:$supportVersion"
+    compile "com.android.support.constraint:constraint-layout:$constraintLayoutVersion"
+
+    // FireBase lib
+    compile "com.google.firebase:firebase-database:$firebaseVersion"
+    compile "com.google.firebase:firebase-storage:$firebaseVersion"
+    compile "com.google.firebase:firebase-auth:$firebaseVersion"
+
+    // ButterKnife
+    compile "com.jakewharton:butterknife:$butterKnifeVersion"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$butterKnifeVersion"
+
+    // Dagger
+    compile "com.squareup.dagger:dagger:$daggerVersion"
+    annotationProcessor "com.squareup.dagger:dagger-compiler:$daggerVersion"
+
+    // RxJava2 and RxAndroid2
+    compile "io.reactivex.rxjava2:rxjava:$rxJava2Version"
+    compile "io.reactivex.rxjava2:rxandroid:$rxAndroid2Version"
+
+    // Retrofit2
+    compile "com.squareup.retrofit2:retrofit:$retrofit2Version"
+    compile "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:$retrofitRxJavaVersion"
+    compile "com.squareup.retrofit2:converter-gson:$retrofit2Version"
+    compile("com.squareup.retrofit2:converter-simplexml:$retrofit2Version") {
+        exclude group: 'xpp3', module: 'xpp3'
+        exclude group: 'stax', module: 'stax-api'
+        exclude group: 'stax', module: 'stax'
+    }
+
+    // GSon
+    compile "com.google.code.gson:gson:$gSonVersion"
+
+    // OkHttp3
+    compile "com.squareup.okhttp3:okhttp:$okHttp3Version"
+
+    // Glide
+    compile "com.github.bumptech.glide:glide:$glideVersion"
+    annotationProcessor "com.github.bumptech.glide:compiler:$glideVersion"
+
+    // Picasso
+    compile "com.squareup.picasso:picasso:$picassoVersion"
+
+    testCompile "junit:junit:$junitVersion"
+}
+
+apply plugin: 'com.google.gms.google-services'
